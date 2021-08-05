@@ -1,0 +1,39 @@
+version: "3"
+networks:
+  proxynet:
+    external:
+      name: bookstore.network
+services:
+  bookstore_api:
+    build: .
+    image: bookstore_api
+    container_name: bookstore_api
+    restart: unless-stopped
+    networks:
+      - proxynet
+    ports:
+      - "4000:4000"
+  bookstore_db:
+    image: mysql:latest
+    command: --default-authentication-plugin=mysql_native_password
+    restart: unless-stopped
+    container_name: bookstore_db
+    volumes:
+      - ./docker:/docker-entrypoint-initdb.d
+    networks:
+      - proxynet
+    ports:
+      - "3906:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: "dev"
+      MYSQL_DATABASE: "bookstore"
+      MYSQL_USER: "dev"
+      MYSQL_PASSWORD: "dev"
+  web-cli:
+    image: bookstore_api
+    networks:
+      - proxynet
+    command: sh
+volumes:
+  docker:
+    external: true

@@ -32,9 +32,4 @@ if($count > 0){
     echo json_encode(["body" => null, "count" => 0]);
 }
 
-
-
-
-
-
 ?>
