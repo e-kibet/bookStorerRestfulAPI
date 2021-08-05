@@ -3,6 +3,7 @@ header("Content-Type: application/json; charset=UTF-8");
 header("Access-Control-Allow-Methods: POST");
 header("Access-Control-Max-Age: 3600");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
+ini_set("error_log", "../../error.log");
 
 include_once '../../config/dbclass.php';
 
@@ -18,12 +19,12 @@ $data = json_decode(file_get_contents("php://input"));
 
 if($data->name && $data->description && $data->created && $data->modified){
 
-$category->name = $data->name;
-$category->description = $data->description;
-$category->created = $data->created;
-$category->modified = $data->modified;
+$input = ['name' => $data->name, 'description' => $data->description, 'created' => $data->created, 'modified' => $data->modified];
 
-if($category->create()){
+// echo json_encode($input['name']);die;
+echo $category->create($input);die;
+
+if($category->create($input)){
     echo '{';
         echo '"message": "Category was created."';
     echo '}';
@@ -33,6 +34,6 @@ if($category->create()){
     echo '}';
 }
 }else{
-    echo '"All the fields are needed!"';
+    echo json_encode(["status" => false, "code" => 404,  "message" => "All fields are required"]);
 }
 ?>

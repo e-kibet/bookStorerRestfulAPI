@@ -4,7 +4,7 @@ class DBClass {
     private $host = "localhost";
     private $username = "dev";
     private $password = "dev";
-    private $database = "dev";
+    private $database = "bookstore";
     public $connection;
 
     public function getConnection(){
