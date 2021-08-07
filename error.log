@@ -1,4 +1,0 @@
-[05-Aug-2021 18:00:00 Africa/Khartoum] PHP Warning:  array_push() expects parameter 1 to be array, null given in /var/www/html/bookStorerRestfulAPI/api/category/read_category.php on line 28
-[05-Aug-2021 18:00:00 Africa/Khartoum] PHP Warning:  array_push() expects parameter 1 to be array, null given in /var/www/html/bookStorerRestfulAPI/api/category/read_category.php on line 28
-[05-Aug-2021 18:00:00 Africa/Khartoum] PHP Warning:  array_push() expects parameter 1 to be array, null given in /var/www/html/bookStorerRestfulAPI/api/category/read_category.php on line 28
-[05-Aug-2021 18:00:00 Africa/Khartoum] PHP Warning:  array_push() expects parameter 1 to be array, null given in /var/www/html/bookStorerRestfulAPI/api/category/read_category.php on line 28

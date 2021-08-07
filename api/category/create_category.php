@@ -21,17 +21,10 @@ if($data->name && $data->description && $data->created && $data->modified){
 
 $input = ['name' => $data->name, 'description' => $data->description, 'created' => $data->created, 'modified' => $data->modified];
 
-// echo json_encode($input['name']);die;
-echo $category->create($input);die;
-
 if($category->create($input)){
-    echo '{';
-        echo '"message": "Category was created."';
-    echo '}';
+    echo json_encode(["status" => true, "code" => 200,  "message" => "Category has been created"]);
 }else{
-    echo '{';
-        echo '"message": "Unable to create catetory."';
-    echo '}';
+    echo json_encode(["status" => false, "code" => 201,  "message" => "Error Unable to create the category"]);
 }
 }else{
     echo json_encode(["status" => false, "code" => 404,  "message" => "All fields are required"]);

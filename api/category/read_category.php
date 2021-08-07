@@ -24,7 +24,6 @@ if($count > 0){
               "created" => $created,
               "modified" => $modified
         );
-
         array_push($category["body"], $p);
     }
     echo json_encode($category);
