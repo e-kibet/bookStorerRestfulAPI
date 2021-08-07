@@ -19,12 +19,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $data = json_decode(file_get_contents("php://input"));
     
     if($data->category_id && $data->name && $data->author && $data->description && $data->created && $data->modified){
-        $input = ['category_id' => $data->category_id,  'name' => $data->name, 'description' => $data->description, 'created' => $data->created, 'modified' => $data->modified];
+        $input = ['category_id' => $data->category_id,  'name' => $data->name, 'author' => $data->author,  'description' => $data->description, 'created' => $data->created, 'modified' => $data->modified];
 
-if($category->create($input)){
-    echo json_encode(["status" => true, "code" => 200,  "message" => "Category has been created"]);
+if($book->create($input)){
+    echo json_encode(["status" => true, "code" => 200,  "message" => "Book has been created"]);
 }else{
-    echo json_encode(["status" => false, "code" => 201,  "message" => "Error Unable to create the category"]);
+    echo json_encode(["status" => false, "code" => 201,  "message" => "Error Unable to create the Book"]);
 }
 }else{
     echo json_encode(["status" => false, "code" => 404,  "message" => "All fields are required"]);
@@ -32,25 +32,27 @@ if($category->create($input)){
     
 }else if ($_SERVER['REQUEST_METHOD'] === 'GET'){
 
-$stmt = $category->read();
+$stmt = $book->read();
 
 $count = $stmt->rowCount();
 if($count > 0){
-    $category = array();
-    $category["body"] = array();
-    $category["count"] = $count;
+    $book = array();
+    $book["body"] = array();
+    $book["count"] = $count;
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
         extract($row);
         $p  = array(
               "id" => $id,
               "name" => $name,
+              'category_id' => $category_id,
+              'author' => $author,
               "description" => $description,
               "created" => $created,
               "modified" => $modified
         );
-        array_push($category["body"], $p);
+        array_push($book["body"], $p);
     }
-    echo json_encode($category);
+    echo json_encode($book);
 }else {
     echo json_encode(["body" => null, "count" => 0]);
 }

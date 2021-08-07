@@ -1,0 +1,2 @@
+[07-Aug-2021 11:27:18 Africa/Khartoum] PHP Notice:  Trying to get property 'category_id' of non-object in /var/www/html/bookStorerRestfulAPI/api/book/index.php on line 21
+[07-Aug-2021 11:27:31 Africa/Khartoum] PHP Notice:  Trying to get property 'category_id' of non-object in /var/www/html/bookStorerRestfulAPI/api/book/index.php on line 21
